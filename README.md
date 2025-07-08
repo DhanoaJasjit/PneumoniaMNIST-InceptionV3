@@ -25,3 +25,4 @@ This repository contains a fine-tuned InceptionV3 model for classifying chest X-
 1. **Install Dependencies**:
    ```bash
    pip install -r requirements.txt
+2. Modify the data_dir variable (line ~30) from /boot/XRAY DATA to your local dataset directory (e.g., /path/to/your/data).
