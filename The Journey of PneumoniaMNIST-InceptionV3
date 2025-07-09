@@ -1,0 +1,92 @@
+# 🎬 The Journey of PneumoniaMNIST-InceptionV3
+
+Welcome to the behind-the-scenes story of my work with the **PneumoniaMNIST dataset**! This is where I dove into the nitty-gritty of building and tweaking a model, learning from mistakes, and dreaming up improvements. Let’s walk through it step by step!
+
+---
+
+## 📊 Kicking Off with the Dataset
+
+I began with the **PneumoniaMNIST dataset**:
+- 3,882 training
+- 524 validation
+- 624 test images
+
+Class distribution:
+- 1,134 Normal
+- 2,748 Pneumonia
+
+The imbalance jumped out at me right away — more Pneumonia than Normal! This set the stage for some creative problem-solving.
+
+---
+
+## 🛠️ Building the Model
+
+I picked **InceptionV3**, pre-trained on ImageNet, and fine-tuned its last **50 layers**.
+
+To keep things robust, I added:
+- Dense layers: **128 and 64 units** with ReLU activation
+- **L2 regularization**, **batch normalization**, and **dropout (0.5, 0.3)** to tame overfitting
+
+I thought this setup would handle the complexity, but the real test was balancing the data.
+
+---
+
+## ⚖️ Balancing the Scales
+
+To tackle the imbalance, I oversampled the **Normal** class 3x, generating ~1,152 images (total **5,034**).
+
+Then, I spiced it up with **augmentations**:
+- Flipping
+- Brightness adjustments (±0.1)
+- Contrast (0.8–1.2)
+- Hue tweaks (±0.05)
+- Rotation (0–360°)
+- Zoom (0.9–1.1)
+- Random crop
+
+It felt like giving the model a creative toolkit!
+
+---
+
+## ⏱️ Training Trials
+
+I trained the model in **two phases**:
+- **Initial Training**: 11 epochs with `EarlyStopping` (patience = 7)
+- **Fine-tuning**: 11 more epochs at learning rate **5e-7** (patience = 5)
+
+**Results**:
+- **Accuracy**: 80.61%
+- **AUC**: 0.9190
+- **Normal Recall**: 48%
+- **Pneumonia Recall**: 96%
+
+⚠️ I over-optimized for Pneumonia, and Normal cases lagged behind.
+
+---
+
+## 🚧 Roadblocks and Lessons
+
+It wasn’t all smooth sailing!
+
+- 🛑 **FileNotFoundError** because I forgot to update the path from `/boot/XRAY DATA` ➝  
+  🔑 *Lesson: Always test file paths early!*
+
+- ❗ **Version conflicts** with `scikit-learn` and `imbalanced-learn` ➝  
+  🔧 *Fix: Pin versions like `scikit-learn==1.4.2` and `imbalanced-learn==0.10.1`*
+
+- ⏳ **Rushed near July 9, 2025** ➝  
+  📅 *Lesson: Manage your time! Hyperparameter tuning needs breathing room.*
+
+---
+
+## 💡 Next Steps and Reflections
+
+Looking back, I’m planning to refine the model with:
+
+- ✅ **2x oversampling (~768 Normal images)** + **focal loss** to improve Normal recall
+- ⏳ **Longer fine-tuning**: ~20 epochs at a lower learning rate (3e-7)
+- 🔍 **Grad-CAM visualizations** to interpret model predictions
+
+---
+
+Each stumble taught me something new. I’m excited to keep tweaking and pushing this work forward 🚀
