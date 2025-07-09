@@ -41,7 +41,7 @@ This repository contains a fine-tuned InceptionV3 model for classifying chest X-
    ```
 
 2. **Download Dataset**:  
-   [PneumoniaMNIST on MedMNIST](https://medmnist.com/)
+   [PneumoniaMNIST on Github](https://github.com/DhanoaJasjit/PneumoniaMNIST-InceptionV3/tree/main/pneumoniamnist)  
 
 3. **Update Dataset Path**:
    Modify `data_dir` in `train_model_pneumoniamnist_final.py` (around line 30):
