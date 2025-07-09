@@ -130,16 +130,12 @@ All visuals are stored in `Visual Output PneumoniaMNIST/`.
   - ✅ Fix: Pin `scikit-learn==1.4.2`, `imbalanced-learn==0.10.1`
 
 - **Data Path Issues**:
-  - Forgot to update dataset path ➝ `FileNotFoundError`.
+  - Forgot to update dataset path ➝ `FileNotFoundError`. (Silly Mistake)
   - ✅ Fix: Always test file paths in early stages.
 
 - **Metric Imbalance**:
   - Focused on Pneumonia recall (96%) ➝ Normal recall dropped (48%).
   - ✅ Lesson: Balance recall and precision for clinical realism.
-
-- **Time Pressure**:
-  - Rushed final tuning post **July 9, 2025** ➝ missed deeper evaluation.
-  - ✅ Lesson: Buffer time for debugging + fine-tuning is essential.
 
 ---
 
@@ -150,7 +146,6 @@ All visuals are stored in `Visual Output PneumoniaMNIST/`.
 - Try 2x oversampling (~768 Normal) + **focal loss** to reduce Normal false negatives.
 - Tune for longer (e.g., 20 epochs @ 3e-7) with warm restarts.
 - Add Grad-CAM and explainability for model transparency.
-- Expand this README with troubleshooting and versioning notes.
 
 ---
 
